@@ -17,7 +17,7 @@ public class CharacterBody : MonoBehaviour
 
     private void Awake()
     {
-        // Initialize all stats based on the baseStats ScriptableObject
+        //Initialize all stats based on the baseStats ScriptableObject
         stats[StatType.MaxHP] = new Stat(baseStats.maxHealth);
         stats[StatType.Strength] = new Stat(baseStats.baseStrength);
         stats[StatType.Agility] = new Stat(baseStats.baseAgility);
@@ -26,20 +26,20 @@ public class CharacterBody : MonoBehaviour
         PrintStats();
     }
 
-    // Get a runtime Stat instance by StatType
+    //Get a runtime Stat instance by StatType
     public Stat GetStat(StatType type)
     {
         return stats.TryGetValue(type, out var stat) ? stat : null;
     }
 
-    // Add a modifier to a specific stat
+    //Add a modifier to a specific stat
     public void AddModifier(StatType type, StatModifier modifier)
     {
         if (stats.TryGetValue(type, out var stat))
             stat.AddModifier(modifier);
     }
 
-    // Remove all modifiers from a specific source
+    //Remove all modifiers from a specific source
     public void RemoveModifiersFromSource(object source)
     {
         foreach (var stat in stats.Values)
@@ -48,7 +48,7 @@ public class CharacterBody : MonoBehaviour
         }
     }
 
-    // Print all current stat values for debugging
+    //Print all current stat values for debugging
     public void PrintStats()
     {
         foreach (var pair in stats)

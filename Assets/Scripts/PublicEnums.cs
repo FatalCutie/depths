@@ -1,3 +1,9 @@
+public enum ModifierType
+{
+    Flat,
+    Percent
+}
+
 public enum StatType
 {
     MaxHP,
