@@ -1,8 +1,10 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
     public Health currentTarget;
+    public GameObject attackGO;
     [SerializeField] private TimingSliderController timingSlider;
     [SerializeField] private AttackData currentAttack;
 
@@ -17,6 +19,7 @@ public class PlayerCombat : MonoBehaviour
     //Attack
     private void HandleTimingResult(int zonesHit)
     {
+        Instantiate(attackGO, currentTarget.transform.position, quaternion.identity); //Attack Animation
         int totalDamage = currentAttack.baseDamage + (zonesHit * currentAttack.bonusPerZoneHit);
         Debug.Log($"Hit {zonesHit} zone(s)! Dealing {totalDamage} damage.");
         currentTarget.TakeDamage(totalDamage);

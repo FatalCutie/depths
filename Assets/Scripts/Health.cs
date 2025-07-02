@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    private CharacterBody body;
-    public int CurrentHP { get; private set; }
+    private CharacterBody body; public int CurrentHP { get; private set; }
 
     private void Start()
     {

@@ -7,8 +7,8 @@ public class TimingSliderController : MonoBehaviour
     [SerializeField] private Slider slider;
     [SerializeField] private Image fillImage;
 
-    private float inputCooldown = 0f;
-    [SerializeField] private float wrongPressDelay = 0.5f; //half a second delay after wrong press
+    [SerializeField] private float inputCooldown = 0f;
+    [SerializeField] private float wrongPressDelay = 10f; //measures seconds
 
     private float speed = 1f;
     private bool increasing = true;
@@ -37,6 +37,7 @@ public class TimingSliderController : MonoBehaviour
     {
         isActive = true;
         slider.value = 0f;
+        inputCooldown = 0f;
         increasing = true;
         speed = scrollSpeed;
         activeZones = zones;
@@ -79,7 +80,7 @@ public class TimingSliderController : MonoBehaviour
         for (int i = 0; i < activeZones.Length; i++)
         {
             var zone = activeZones[i];
-            if (slider.value >= zone.min && slider.value <= zone.max)
+            if (slider.value >= zone.min && slider.value <= zone.max && inputCooldown <= 0)
             {
                 if (zonesHitFlags[i])
                     inHitZone = true;
@@ -91,8 +92,10 @@ public class TimingSliderController : MonoBehaviour
         //Color logic
         if (inHitZone)
             fillImage.color = Color.Lerp(Color.green, Color.white, 0.6f); //Brighter green
+        else if (inUnhitZone && inputCooldown > 0)
+            fillImage.color = Color.Lerp(Color.red, Color.white, 0.6f); //Brighter red
         else if (inUnhitZone)
-            fillImage.color = Color.green; //Normal green
+            fillImage.color = Color.green;
         else
             fillImage.color = Color.red;
 

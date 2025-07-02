@@ -16,8 +16,8 @@ MonoBehaviour:
   baseDamage: 5
   bonusPerZoneHit: 5
   scrollSpeed: 0.5
-  greenZones:
-  - min: 0.2
-    max: 0.5
+  timingZones:
+  - min: 0.1
+    max: 0.3
   - min: 0.7
-    max: 1
+    max: 0.9
