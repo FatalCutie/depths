@@ -1,21 +1,45 @@
+using TMPro;
 using UnityEngine;
-using System.Collections.Generic;
+using UnityEngine.UI;
 
-[CreateAssetMenu(menuName = "ScriptableObject/Card")]
-public class Card : ScriptableObject
+public class Card : MonoBehaviour
 {
-    public string cardName;
-    [TextArea] public string description;
-    public Sprite icon;
+    public TextMeshProUGUI cardName;
+    public CharacterBody playerBody; //Try and clean this up later
+    public Image cardImage;
+    public TextMeshProUGUI cardDescription;
+    public CardSO cardData;
 
-    [SerializeReference]
-    public List<CardEffect> effects = new();
-
-    public void Apply(CharacterBody body)
+    void Start()
     {
-        foreach (var effect in effects)
+        InitializeCard();
+    }
+
+    void InitializeCard()
+    {
+        if (!cardData)
         {
-            effect.Apply(body);
+            Debug.LogWarning("Warning: Card is being Initialized without Data!");
+            return;
         }
+
+        cardName.text = cardData.cardName;
+        cardImage.sprite = cardData.icon;
+        cardDescription.text = cardData.description;
+    }
+
+    public void SetCardData(CardSO cd)
+    {
+        cardData = cd;
+        InitializeCard();
+    }
+
+    public void ApplyCardEffect()
+    {
+        foreach (CardEffect ce in cardData.effects)
+        {
+            ce.Apply(playerBody);
+        }
+        Destroy(gameObject);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class CardButtonUI : MonoBehaviour
 {
     [SerializeField] private Button cardButton;
-    [SerializeField] private Card cardToApply;
+    [SerializeField] private CardSO cardToApply;
     [SerializeField] private CharacterBody playerBody;
 
     private void Awake()
