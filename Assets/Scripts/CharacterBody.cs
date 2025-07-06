@@ -23,7 +23,7 @@ public class CharacterBody : MonoBehaviour
         stats[StatType.Agility] = new Stat(baseStats.baseAgility);
         stats[StatType.Vitality] = new Stat(baseStats.baseVitality);
         stats[StatType.Luck] = new Stat(baseStats.baseLuck);
-        PrintStats();
+        //PrintStats();
     }
 
     //Get a runtime Stat instance by StatType

@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardName: {fileID: 7326175345631571402}
-  playerBody: {fileID: 0}
+  playerBody: {fileID: 4223079301222391645, guid: d75cc72f0d08560469162021bbf63e69, type: 3}
   cardImage: {fileID: 3731284978059410283}
   cardDescription: {fileID: 6227758880671815717}
   cardData: {fileID: 11400000, guid: 2f9c4c0a9927f8d4482d1e585561a740, type: 2}
