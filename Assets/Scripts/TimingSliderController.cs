@@ -90,10 +90,10 @@ public class TimingSliderController : MonoBehaviour
         }
 
         //Color logic
-        if (inHitZone)
+        if (inputCooldown > 0)
+            fillImage.color = Color.orange;
+        else if (inHitZone)
             fillImage.color = Color.Lerp(Color.green, Color.white, 0.6f); //Brighter green
-        else if (inUnhitZone && inputCooldown > 0)
-            fillImage.color = Color.Lerp(Color.red, Color.white, 0.6f); //Brighter red
         else if (inUnhitZone)
             fillImage.color = Color.green;
         else
@@ -114,6 +114,7 @@ public class TimingSliderController : MonoBehaviour
                 if (!zonesHitFlags[i] && slider.value >= zone.min && slider.value <= zone.max)
                 {
                     zonesHitFlags[i] = true;
+                    FindAnyObjectByType<AudioManager>().Play("GoodTiming");
                     Debug.Log($"Zone {i + 1} hit!");
                     hitAnyZone = true;
                     break;
@@ -123,6 +124,7 @@ public class TimingSliderController : MonoBehaviour
             if (!hitAnyZone)
             {
                 inputCooldown = wrongPressDelay;
+                FindAnyObjectByType<AudioManager>().Play("BadTiming");
                 Debug.Log("Wrong timing, you suck! Cooldown started.");
             }
         }

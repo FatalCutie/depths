@@ -10,7 +10,7 @@ public class CardDealer : MonoBehaviour
 
     void Start()
     {
-        DecideNumberOfCardsToGenerate();
+        //DecideNumberOfCardsToGenerate();
     }
 
     void GenerateHand(int cardNum)
@@ -27,6 +27,7 @@ public class CardDealer : MonoBehaviour
             hand.Add(newCard);
             centerOffset += cardOffset;
         }
+        FindAnyObjectByType<AudioManager>().Play("CardHand");
     }
 
     public void DecideNumberOfCardsToGenerate()

@@ -129,6 +129,7 @@ MonoBehaviour:
   healthBar: {fileID: 5194265662369398224}
   healthBarText: {fileID: 1362113135014725966}
   characterHealth: {fileID: 0}
+  fillArea: {fileID: 9021873707609017305}
 --- !u!114 &5194265662369398224
 MonoBehaviour:
   m_ObjectHideFlags: 0

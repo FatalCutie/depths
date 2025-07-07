@@ -1,9 +1,10 @@
-using System;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
     private CharacterBody body; public int CurrentHP { get; private set; }
+    public enum CharacterType { PLAYER, ENEMY }; //This will probably be relocated to characterbody 
+    public CharacterType characterType = CharacterType.PLAYER;
 
     private void Start()
     {
@@ -14,6 +15,10 @@ public class Health : MonoBehaviour
     public void TakeDamage(int amount)
     {
         CurrentHP = Mathf.Clamp(CurrentHP - amount, 0, MaxHP);
+        if (CurrentHP == 0 && characterType == CharacterType.ENEMY) //temp
+        {
+            FindFirstObjectByType<CardDealer>().DecideNumberOfCardsToGenerate();
+        }
     }
 
     public void Heal(int amount)

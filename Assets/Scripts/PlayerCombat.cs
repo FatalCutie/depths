@@ -20,6 +20,7 @@ public class PlayerCombat : MonoBehaviour
     private void HandleTimingResult(int zonesHit)
     {
         Instantiate(attackGO, currentTarget.transform.position, quaternion.identity); //Attack Animation
+        FindAnyObjectByType<AudioManager>().Play("Attack");
         int totalDamage = currentAttack.baseDamage + (zonesHit * currentAttack.bonusPerZoneHit);
         Debug.Log($"Hit {zonesHit} zone(s)! Dealing {totalDamage} damage.");
         currentTarget.TakeDamage(totalDamage);
