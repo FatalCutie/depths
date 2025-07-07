@@ -108,6 +108,7 @@ public class TimingSliderController : MonoBehaviour
         {
             bool hitAnyZone = false;
 
+            //Hit timing
             for (int i = 0; i < activeZones.Length; i++)
             {
                 var zone = activeZones[i];
@@ -121,6 +122,7 @@ public class TimingSliderController : MonoBehaviour
                 }
             }
 
+            //Miss timing
             if (!hitAnyZone)
             {
                 inputCooldown = wrongPressDelay;

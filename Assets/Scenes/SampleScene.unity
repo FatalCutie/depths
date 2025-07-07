@@ -1607,6 +1607,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1496929351}
   - component: {fileID: 1496929352}
+  - component: {fileID: 1496929353}
   m_Layer: 5
   m_Name: CardManager
   m_TagString: Untagged
@@ -1645,15 +1646,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f94b0fa8d60979b449d652116220a4d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deck:
+  cb: {fileID: 1496929353}
+  hand: []
+  cardPrefab: {fileID: 6429287207431063747, guid: a00553c9393d2174ea01b93abf8a23ea, type: 3}
+  cheatAction: {fileID: 5793615328317341762, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  cardOffset: 250
+--- !u!114 &1496929353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496929350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6c82b7cb26ab8d41a6abbdc638a42d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availableCards:
   - {fileID: 11400000, guid: 2f9c4c0a9927f8d4482d1e585561a740, type: 2}
+  unavailableCards:
   - {fileID: 11400000, guid: 0ea35bfbdca0f804bac42f6a890debb2, type: 2}
   - {fileID: 11400000, guid: 096e7f12c98e07b4c9eb75b686d97524, type: 2}
   - {fileID: 11400000, guid: 11370816adc1a5946a78eb721fc39b01, type: 2}
   - {fileID: 11400000, guid: c9c48998a9896eb4ab2c7dd3bb1d44f7, type: 2}
-  hand: []
-  cardPrefab: {fileID: 6429287207431063747, guid: a00553c9393d2174ea01b93abf8a23ea, type: 3}
-  cardOffset: 250
 --- !u!114 &1673934244 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4223079301222391645, guid: d75cc72f0d08560469162021bbf63e69, type: 3}

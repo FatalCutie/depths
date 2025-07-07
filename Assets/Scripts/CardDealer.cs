@@ -1,16 +1,26 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CardDealer : MonoBehaviour
 {
-    public List<CardSO> deck;
+    public CardBank cb;
     public List<GameObject> hand;
     public GameObject cardPrefab;
+    [SerializeField] private InputActionReference cheatAction;
     public int cardOffset;
 
     void Start()
     {
-        //DecideNumberOfCardsToGenerate();
+        cb = FindFirstObjectByType<CardBank>();
+    }
+
+    void Update()
+    {
+        if (cheatAction.action.triggered)
+        {
+            DecideNumberOfCardsToGenerate();
+        }
     }
 
     void GenerateHand(int cardNum)
@@ -32,21 +42,21 @@ public class CardDealer : MonoBehaviour
 
     public void DecideNumberOfCardsToGenerate()
     {
-        if (deck.Count == 0)
+        if (cb.availableCards.Count == 0)
         {
             Debug.LogWarning("Deck has run out of cards! Cannot generate hand!");
             return;
         }
-        if (deck.Count <= 3) GenerateHand(deck.Count);
+        if (cb.availableCards.Count <= 3) GenerateHand(cb.availableCards.Count);
         else GenerateHand(UnityEngine.Random.Range(3, 6)); //3-5 cards per hand
 
     }
 
     private CardSO PullCardSO()
     {
-        int cardID = UnityEngine.Random.Range(0, deck.Count);
-        CardSO toReturn = deck[cardID];
-        deck.Remove(toReturn);
+        int cardID = UnityEngine.Random.Range(0, cb.availableCards.Count);
+        CardSO toReturn = cb.availableCards[cardID];
+        cb.PutCardInHand(toReturn); //ensure no duplicates
         return toReturn;
     }
 
@@ -64,9 +74,11 @@ public class CardDealer : MonoBehaviour
 
     public void DiscardHand() //making this public doesn't feel great but it shouldn't cause problems
     {
+        cb.ReturnCardsToDeck();
         foreach (GameObject g in hand)
         {
             Destroy(g);
         }
     }
+
 }

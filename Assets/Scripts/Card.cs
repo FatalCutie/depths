@@ -18,7 +18,7 @@ public class Card : MonoBehaviour
         FindPlayerBody();
     }
 
-    //This is so stupid i started laughing hysterically when I thought of it
+    //This is so silly i started laughing hysterically when I thought of it
     void FindPlayerBody()
     {
         GameObject player = FindFirstObjectByType<PlayerCombat>().gameObject;
@@ -50,6 +50,7 @@ public class Card : MonoBehaviour
         {
             ce.Apply(playerBody);
         }
+        FindFirstObjectByType<CardBank>().PickCard(cardData);
         FindFirstObjectByType<CardDealer>().DiscardHand();
         // Destroy(gameObject);
     }

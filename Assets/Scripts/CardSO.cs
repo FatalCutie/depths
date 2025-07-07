@@ -7,6 +7,7 @@ public class CardSO : ScriptableObject
     public string cardName;
     [TextArea] public string description;
     public Sprite icon;
+    public List<CardSO> dependencies;
 
     [SerializeReference]
     public List<CardEffect> effects = new();
