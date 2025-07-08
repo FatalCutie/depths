@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CardBank : MonoBehaviour
@@ -31,10 +33,9 @@ public class CardBank : MonoBehaviour
         availableCards.Remove(card);
     }
 
-    //Throwing InvalidOperationException on second hand pick
     public void ReturnCardsToDeck()
     {
-        foreach (CardSO c in pickableCardHand)
+        foreach (CardSO c in pickableCardHand.ToList())
         {
             availableCards.Add(c);
             pickableCardHand.Remove(c);
@@ -45,13 +46,14 @@ public class CardBank : MonoBehaviour
     {
         unlockCardsBuffer.Add(c);
         unavailableCards.Remove(c);
+        Debug.Log(availableCards);
     }
 
-    //Throwing InvalidOperationException
     public void UnlockCardsFromBuffer()
     {
-        foreach (CardSO c in unlockCardsBuffer)
+        foreach (CardSO c in unlockCardsBuffer.ToList())
         {
+            Debug.Log($"Unlocking card {c.cardName}");
             availableCards.Add(c);
             unlockCardsBuffer.Remove(c);
         }
@@ -59,7 +61,7 @@ public class CardBank : MonoBehaviour
 
     private void CheckCardDependencies(CardSO card)
     {
-        Debug.Log("THis is running!");
+        Debug.Log("This is running!");
         List<CardSO> dependentCards = unavailableCards.FindAll(x => x.dependencies.Contains(card));
         Debug.Log($"Card dependencies: {dependentCards.Count}");
         //Checks to see if all dependencies are in pickedCards
@@ -74,14 +76,18 @@ public class CardBank : MonoBehaviour
             }
 
             int i = 0; //This is probably unoptimal but I'm blanking on a slicker way to do it
-            foreach (CardSO dependency in c.dependencies)
+            foreach (CardSO dependency in c.dependencies.ToList())
             {
-                if (!pickedCards.Find(x => dependency))
+                if (!pickedCards.Contains(dependency))
                 {
                     Debug.Log($"Missing a dependency, breaking!");
                     break;
                 }
-                else i++;
+                else
+                {
+                    Debug.Log($"Found dependency {dependency.cardName}!");
+                    i++;
+                }
             }
             if (i == c.dependencies.Count)
             {

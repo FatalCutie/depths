@@ -52,6 +52,6 @@ public class Card : MonoBehaviour
         }
         FindFirstObjectByType<CardBank>().PickCard(cardData);
         FindFirstObjectByType<CardDealer>().DiscardHand();
-        // Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

@@ -17,5 +17,8 @@ MonoBehaviour:
 
 '
   icon: {fileID: 0}
+  dependencies:
+  - {fileID: 11400000, guid: 0ea35bfbdca0f804bac42f6a890debb2, type: 2}
+  cardRarity: 0
   effects:
   - {fileID: 11400000, guid: 656272dd31c270644a04335195b3bf07, type: 2}

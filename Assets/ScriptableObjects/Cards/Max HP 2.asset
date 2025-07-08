@@ -20,5 +20,6 @@ MonoBehaviour:
   dependencies:
   - {fileID: 11400000, guid: 2f9c4c0a9927f8d4482d1e585561a740, type: 2}
   - {fileID: 11400000, guid: 0ea35bfbdca0f804bac42f6a890debb2, type: 2}
+  cardRarity: 1
   effects:
   - {fileID: 11400000, guid: 966c4837c152dd74daae7e3753ba86e9, type: 2}

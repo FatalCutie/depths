@@ -6,6 +6,7 @@ public class CardDealer : MonoBehaviour
 {
     public CardBank cb;
     public List<GameObject> hand;
+    [SerializeField] private CardSO outOfCards;
     public GameObject cardPrefab;
     [SerializeField] private InputActionReference cheatAction;
     public int cardOffset;
@@ -40,14 +41,21 @@ public class CardDealer : MonoBehaviour
         FindAnyObjectByType<AudioManager>().Play("CardHand");
     }
 
+    void GenerateEmptyHand()
+    {
+        GameObject newCard = Instantiate(cardPrefab, this.gameObject.transform, true);
+        newCard.transform.localPosition = new Vector3(0, 0, 0); ;
+        newCard.GetComponent<Card>().SetCardData(outOfCards);
+    }
+
     public void DecideNumberOfCardsToGenerate()
     {
         if (cb.availableCards.Count == 0)
         {
             Debug.LogWarning("Deck has run out of cards! Cannot generate hand!");
-            return;
+            GenerateEmptyHand();
         }
-        if (cb.availableCards.Count <= 3) GenerateHand(cb.availableCards.Count);
+        else if (cb.availableCards.Count <= 3) GenerateHand(cb.availableCards.Count);
         else GenerateHand(UnityEngine.Random.Range(3, 6)); //3-5 cards per hand
 
     }
