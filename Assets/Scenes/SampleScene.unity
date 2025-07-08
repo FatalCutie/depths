@@ -673,6 +673,7 @@ GameObject:
   - component: {fileID: 596760716}
   - component: {fileID: 596760718}
   - component: {fileID: 596760719}
+  - component: {fileID: 596760720}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -777,6 +778,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStats: {fileID: 11400000, guid: eb4bb4d7b403c8a40bb9b890a0d340af, type: 2}
+--- !u!114 &596760720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596760715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 200b2981cccbd50469217656fdef1375, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,6 +1023,51 @@ MonoBehaviour:
   cardButton: {fileID: 753050775}
   cardToApply: {fileID: 11400000, guid: 2f9c4c0a9927f8d4482d1e585561a740, type: 2}
   playerBody: {fileID: 1673934244}
+--- !u!1 &757979741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 757979743}
+  - component: {fileID: 757979742}
+  m_Layer: 0
+  m_Name: CombatManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &757979742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757979741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b2f93a6edff05f47833c91f616fd871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyAIs: []
+--- !u!4 &757979743
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757979741}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 954.2029, y: 599.81647, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &809498405
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,7 +1158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5562892949037848102, guid: 3bbc79e263548f54aa4124784ab4d13a, type: 3}
       propertyPath: sounds.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5562892949037848102, guid: 3bbc79e263548f54aa4124784ab4d13a, type: 3}
       propertyPath: sounds.Array.data[0].clip
@@ -1135,6 +1193,14 @@ PrefabInstance:
       value: Attack
       objectReference: {fileID: 0}
     - target: {fileID: 5562892949037848102, guid: 3bbc79e263548f54aa4124784ab4d13a, type: 3}
+      propertyPath: sounds.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7c9681ca0fb04f547b09c78f12d1dea4, type: 3}
+    - target: {fileID: 5562892949037848102, guid: 3bbc79e263548f54aa4124784ab4d13a, type: 3}
+      propertyPath: sounds.Array.data[4].name
+      value: TestEndTurn
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562892949037848102, guid: 3bbc79e263548f54aa4124784ab4d13a, type: 3}
       propertyPath: sounds.Array.data[0].pitch
       value: 1
       objectReference: {fileID: 0}
@@ -1151,6 +1217,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5562892949037848102, guid: 3bbc79e263548f54aa4124784ab4d13a, type: 3}
+      propertyPath: sounds.Array.data[4].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562892949037848102, guid: 3bbc79e263548f54aa4124784ab4d13a, type: 3}
       propertyPath: sounds.Array.data[0].volume
       value: 0.763
       objectReference: {fileID: 0}
@@ -1164,6 +1234,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5562892949037848102, guid: 3bbc79e263548f54aa4124784ab4d13a, type: 3}
       propertyPath: sounds.Array.data[3].volume
+      value: 0.751
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562892949037848102, guid: 3bbc79e263548f54aa4124784ab4d13a, type: 3}
+      propertyPath: sounds.Array.data[4].volume
       value: 0.751
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1947,6 +2021,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
+  - {fileID: 757979743}
   - {fileID: 847795389}
   - {fileID: 619394802}
   - {fileID: 1177958509}

@@ -9,6 +9,7 @@ public class CardSO : ScriptableObject
     public Sprite icon;
     public List<CardSO> dependencies;
     public enum CardRarity { COMMON, RARE, LEGENDARY };
+    public enum CardFamily { STRENGTH, ENDURANCE, AGILITY, LUCK };
     public CardRarity cardRarity = CardRarity.COMMON;
 
     [SerializeReference]

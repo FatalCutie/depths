@@ -22,7 +22,7 @@ public class CardBank : MonoBehaviour
 
     public void MakeCardAvailable(CardSO card)
     {
-        Debug.Log($"Making {card.cardName} available!");
+        //Debug.Log($"Making {card.cardName} available!");
         availableCards.Add(card);
         unavailableCards.Remove(card);
     }
@@ -46,14 +46,13 @@ public class CardBank : MonoBehaviour
     {
         unlockCardsBuffer.Add(c);
         unavailableCards.Remove(c);
-        Debug.Log(availableCards);
     }
 
     public void UnlockCardsFromBuffer()
     {
         foreach (CardSO c in unlockCardsBuffer.ToList())
         {
-            Debug.Log($"Unlocking card {c.cardName}");
+            //Debug.Log($"Unlocking card {c.cardName}");
             availableCards.Add(c);
             unlockCardsBuffer.Remove(c);
         }
@@ -61,16 +60,15 @@ public class CardBank : MonoBehaviour
 
     private void CheckCardDependencies(CardSO card)
     {
-        Debug.Log("This is running!");
         List<CardSO> dependentCards = unavailableCards.FindAll(x => x.dependencies.Contains(card));
-        Debug.Log($"Card dependencies: {dependentCards.Count}");
+        //Debug.Log($"Card dependencies: {dependentCards.Count}");
         //Checks to see if all dependencies are in pickedCards
         foreach (CardSO c in dependentCards)
         {
             //Skip hard work if only dependency
             if (c.dependencies.Count == 1)
             {
-                Debug.Log($"Only one dependency for {c.cardName}, unlocking!");
+                //Debug.Log($"Only one dependency for {c.cardName}, unlocking!");
                 AddCardToBuffer(c);
                 continue;
             }
@@ -80,12 +78,12 @@ public class CardBank : MonoBehaviour
             {
                 if (!pickedCards.Contains(dependency))
                 {
-                    Debug.Log($"Missing a dependency, breaking!");
+                    //Debug.Log($"Missing a dependency, breaking!");
                     break;
                 }
                 else
                 {
-                    Debug.Log($"Found dependency {dependency.cardName}!");
+                    //Debug.Log($"Found dependency {dependency.cardName}!");
                     i++;
                 }
             }

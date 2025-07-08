@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -22,7 +23,20 @@ public class PlayerCombat : MonoBehaviour
         Instantiate(attackGO, currentTarget.transform.position, quaternion.identity); //Attack Animation
         FindAnyObjectByType<AudioManager>().Play("Attack");
         int totalDamage = currentAttack.baseDamage + (zonesHit * currentAttack.bonusPerZoneHit);
-        Debug.Log($"Hit {zonesHit} zone(s)! Dealing {totalDamage} damage.");
+        //Debug.Log($"Hit {zonesHit} zone(s)! Dealing {totalDamage} damage.");
         currentTarget.TakeDamage(totalDamage);
+        if (FindFirstObjectByType<CombatManager>().AreThereEnemiesStillAlive()) StartCoroutine(EndTurn());
+    }
+
+    private IEnumerator EndTurn()
+    {
+        //TODO: Hide UI
+        yield return new WaitForSeconds(1);
+        EndPlayerTurn();
+    }
+    private void EndPlayerTurn()
+    {
+        //Debug.Log("I'm ending my turn!");
+        FindFirstObjectByType<CombatManager>().DecideWhosTurnItIs();
     }
 }

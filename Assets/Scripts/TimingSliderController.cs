@@ -116,7 +116,7 @@ public class TimingSliderController : MonoBehaviour
                 {
                     zonesHitFlags[i] = true;
                     FindAnyObjectByType<AudioManager>().Play("GoodTiming");
-                    Debug.Log($"Zone {i + 1} hit!");
+                    //Debug.Log($"Zone {i + 1} hit!");
                     hitAnyZone = true;
                     break;
                 }
@@ -127,7 +127,7 @@ public class TimingSliderController : MonoBehaviour
             {
                 inputCooldown = wrongPressDelay;
                 FindAnyObjectByType<AudioManager>().Play("BadTiming");
-                Debug.Log("Wrong timing, you suck! Cooldown started.");
+                //Debug.Log("Wrong timing, you suck! Cooldown started.");
             }
         }
     }
