@@ -5,10 +5,15 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     public Health currentTarget;
+    private CombatModifiers cm;
     public GameObject attackGO;
     [SerializeField] private TimingSliderController timingSlider;
     [SerializeField] private AttackData currentAttack;
 
+    void Start()
+    {
+        cm = FindFirstObjectByType<CombatModifiers>();
+    }
     public void StartAttack()
     {
         if (currentTarget == null || currentAttack == null) return;
@@ -21,11 +26,18 @@ public class PlayerCombat : MonoBehaviour
     private void HandleTimingResult(int zonesHit)
     {
         Instantiate(attackGO, currentTarget.transform.position, quaternion.identity); //Attack Animation
-        FindAnyObjectByType<AudioManager>().Play("Attack");
+
         int totalDamage = currentAttack.baseDamage + (zonesHit * currentAttack.bonusPerZoneHit);
+        if (cm.DoesAttackCrit())
+        {
+            totalDamage *= 2;
+            FindAnyObjectByType<AudioManager>().Play("Attack"); //TODO: Add critical sound
+        }
+        else FindAnyObjectByType<AudioManager>().Play("Attack");
         //Debug.Log($"Hit {zonesHit} zone(s)! Dealing {totalDamage} damage.");
         currentTarget.TakeDamage(totalDamage);
         if (FindFirstObjectByType<CombatManager>().AreThereEnemiesStillAlive()) StartCoroutine(EndTurn());
+        else FindFirstObjectByType<CardDealer>().DecideNumberOfCardsToGenerate();
     }
 
     private IEnumerator EndTurn()

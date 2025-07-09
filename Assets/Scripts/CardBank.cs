@@ -42,6 +42,7 @@ public class CardBank : MonoBehaviour
         }
     }
 
+    //Add card to buffer to prevent chain unlocking cards while checking for dependencies
     public void AddCardToBuffer(CardSO c)
     {
         unlockCardsBuffer.Add(c);
@@ -76,16 +77,8 @@ public class CardBank : MonoBehaviour
             int i = 0; //This is probably unoptimal but I'm blanking on a slicker way to do it
             foreach (CardSO dependency in c.dependencies.ToList())
             {
-                if (!pickedCards.Contains(dependency))
-                {
-                    //Debug.Log($"Missing a dependency, breaking!");
-                    break;
-                }
-                else
-                {
-                    //Debug.Log($"Found dependency {dependency.cardName}!");
-                    i++;
-                }
+                if (!pickedCards.Contains(dependency)) break;
+                else i++;
             }
             if (i == c.dependencies.Count)
             {

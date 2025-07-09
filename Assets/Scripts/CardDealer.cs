@@ -6,6 +6,8 @@ public class CardDealer : MonoBehaviour
 {
     public CardBank cb;
     public List<GameObject> hand;
+    public enum CardMode { NORMAL, FREEZE, BURN };
+    public CardMode cardMode = CardMode.NORMAL;
     [SerializeField] private CardSO outOfCards;
     public GameObject cardPrefab;
     [SerializeField] private InputActionReference cheatAction;
@@ -34,7 +36,7 @@ public class CardDealer : MonoBehaviour
             Vector3 generationPosition = new Vector3(centerOffset, 0, 0);
             GameObject newCard = Instantiate(cardPrefab, this.gameObject.transform, true);
             newCard.transform.localPosition = generationPosition;
-            newCard.GetComponent<Card>().SetCardData(PullCardSO());
+            newCard.GetComponent<Card>().SetCardData(PullCardSOFromDeck());
             hand.Add(newCard);
             centerOffset += cardOffset;
         }
@@ -60,7 +62,7 @@ public class CardDealer : MonoBehaviour
 
     }
 
-    private CardSO PullCardSO()
+    private CardSO PullCardSOFromDeck()
     {
         int cardID = UnityEngine.Random.Range(0, cb.availableCards.Count);
         CardSO toReturn = cb.availableCards[cardID];
@@ -69,13 +71,13 @@ public class CardDealer : MonoBehaviour
     }
 
     //Guarantees card will be in next hand
-    void FreezeCard()
+    public void EnterFreezeMode()
     {
 
     }
 
     //Removes a card from the pool, deletes card
-    void BurnCard()
+    public void EnterBurnMode()
     {
 
     }

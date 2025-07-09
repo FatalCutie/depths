@@ -1,12 +1,12 @@
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
     public TextMeshProUGUI cardName;
+
+    public CardDealer.CardMode cardMode = CardDealer.CardMode.NORMAL;
     public CharacterBody playerBody; //Cards may apply to final boss too
     public Image cardImage;
     public TextMeshProUGUI cardDescription;
@@ -42,6 +42,22 @@ public class Card : MonoBehaviour
     {
         cardData = cd;
         InitializeCard();
+    }
+
+    public void DecideCardReactions()
+    {
+        switch (cardMode)
+        {
+            case CardDealer.CardMode.NORMAL:
+                ApplyCardEffect();
+                break;
+            case CardDealer.CardMode.FREEZE:
+                //Ensure card appears next hand
+                break;
+            case CardDealer.CardMode.BURN:
+                //Remove card from pile
+                break;
+        }
     }
 
     public void ApplyCardEffect()

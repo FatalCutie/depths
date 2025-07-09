@@ -6,11 +6,13 @@ using UnityEngine;
 public class CombatManager : MonoBehaviour
 {
     public List<EnemyAI> enemyAIs;
+    private CombatModifiers cm;
     int timesLooped = 0;
 
     void Start()
     {
         InitializeEnemies();
+        cm = GetComponent<CombatModifiers>();
     }
     //pupulate enemies list based on generated encounter
     public void InitializeEnemies()
@@ -39,9 +41,9 @@ public class CombatManager : MonoBehaviour
         foreach (EnemyAI e in enemyAIs)
         {
             GameObject go = e.gameObject;
-            if (go.GetComponent<Health>().CurrentHP > 0)
+            if (go.GetComponent<Health>().currentHP > 0)
             {
-                Debug.Log(go.GetComponent<Health>().CurrentHP);
+                Debug.Log(go.GetComponent<Health>().currentHP);
                 continue;
             }
             else return false;

@@ -11,7 +11,7 @@ public class HealthBar : MonoBehaviour
 
     void Update()
     {
-        UpdateHealthBar(); //temp
+        UpdateHealthBar();
     }
 
     public void UpdateHealthBar()
@@ -21,9 +21,18 @@ public class HealthBar : MonoBehaviour
             if (fillArea.activeSelf) fillArea.SetActive(false);
             return;
         }
-        healthBar.maxValue = characterHealth.MaxHP;
-        healthBar.value = characterHealth.CurrentHP;
-        healthBarText.text = $"{characterHealth.CurrentHP}/{characterHealth.MaxHP}";
+        if (characterHealth.body)
+        {
+            healthBar.maxValue = characterHealth.MaxHP;
+            healthBarText.text = $"{characterHealth.currentHP}/{characterHealth.MaxHP}";
+        }
+        else
+        {
+            healthBar.maxValue = characterHealth.maxHP;
+            healthBarText.text = $"{characterHealth.currentHP}/{characterHealth.maxHP}";
+        }
+        healthBar.value = characterHealth.currentHP;
+
     }
 
 }
