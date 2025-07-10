@@ -1,11 +1,13 @@
 using UnityEngine;
 
+//Buffs stats in a players body [Max HP, STR, Luck, etc.]
 [CreateAssetMenu(menuName = "ScriptableObject/Card Effects/Stat Modifier")]
 public class StatModifierEffect : CardEffect
 {
     public StatType statType;
     public float modifierValue;
     public ModifierType modifierType = ModifierType.Flat;
+    public override Effect effect => Effect.APPLY;
 
     public override void Apply(CharacterBody body)
     {
@@ -31,4 +33,11 @@ public class StatModifierEffect : CardEffect
                 break;
         }
     }
+
+    #region Unused Voids
+    public override void Enhance()
+    {
+        throw new System.NotImplementedException();
+    }
+    #endregion
 }

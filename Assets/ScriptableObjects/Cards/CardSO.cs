@@ -17,9 +17,18 @@ public class CardSO : ScriptableObject
 
     public void Apply(CharacterBody body)
     {
-        foreach (var effect in effects)
+        foreach (var e in effects)
         {
-            effect.Apply(body);
+            switch (e.effect)
+            {
+                case CardEffect.Effect.APPLY:
+                    e.Apply(body);
+                    break;
+
+                case CardEffect.Effect.ENHANCE:
+                    e.Enhance();
+                    break;
+            }
         }
     }
 }

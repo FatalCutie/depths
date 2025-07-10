@@ -1034,6 +1034,7 @@ GameObject:
   - component: {fileID: 757979743}
   - component: {fileID: 757979742}
   - component: {fileID: 757979744}
+  - component: {fileID: 757979745}
   m_Layer: 0
   m_Name: CombatManager
   m_TagString: Untagged
@@ -1083,6 +1084,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criticalHitRate: 0
   canPlayerCrit: 0
+--- !u!114 &757979745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757979741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86d5f020e8be3774cac7fb7172fe612c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &809498405
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,7 +1186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5562892949037848102, guid: 3bbc79e263548f54aa4124784ab4d13a, type: 3}
       propertyPath: sounds.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5562892949037848102, guid: 3bbc79e263548f54aa4124784ab4d13a, type: 3}
       propertyPath: sounds.Array.data[0].clip
@@ -1216,6 +1229,14 @@ PrefabInstance:
       value: TestEndTurn
       objectReference: {fileID: 0}
     - target: {fileID: 5562892949037848102, guid: 3bbc79e263548f54aa4124784ab4d13a, type: 3}
+      propertyPath: sounds.Array.data[5].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7c9681ca0fb04f547b09c78f12d1dea4, type: 3}
+    - target: {fileID: 5562892949037848102, guid: 3bbc79e263548f54aa4124784ab4d13a, type: 3}
+      propertyPath: sounds.Array.data[5].name
+      value: TestEndTurn
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562892949037848102, guid: 3bbc79e263548f54aa4124784ab4d13a, type: 3}
       propertyPath: sounds.Array.data[0].pitch
       value: 1
       objectReference: {fileID: 0}
@@ -1236,6 +1257,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5562892949037848102, guid: 3bbc79e263548f54aa4124784ab4d13a, type: 3}
+      propertyPath: sounds.Array.data[5].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562892949037848102, guid: 3bbc79e263548f54aa4124784ab4d13a, type: 3}
       propertyPath: sounds.Array.data[0].volume
       value: 0.763
       objectReference: {fileID: 0}
@@ -1253,6 +1278,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5562892949037848102, guid: 3bbc79e263548f54aa4124784ab4d13a, type: 3}
       propertyPath: sounds.Array.data[4].volume
+      value: 0.751
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562892949037848102, guid: 3bbc79e263548f54aa4124784ab4d13a, type: 3}
+      propertyPath: sounds.Array.data[5].volume
       value: 0.751
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1737,6 +1766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cb: {fileID: 1496929353}
   hand: []
+  cardMode: 0
   outOfCards: {fileID: 11400000, guid: d2d2a28b8f8027d4da0308cec0460c79, type: 2}
   cardPrefab: {fileID: 6429287207431063747, guid: a00553c9393d2174ea01b93abf8a23ea, type: 3}
   cheatAction: {fileID: 5793615328317341762, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

@@ -30,8 +30,8 @@ public class PlayerCombat : MonoBehaviour
         int totalDamage = currentAttack.baseDamage + (zonesHit * currentAttack.bonusPerZoneHit);
         if (cm.DoesAttackCrit())
         {
-            totalDamage *= 2;
-            FindAnyObjectByType<AudioManager>().Play("Attack"); //TODO: Add critical sound
+            totalDamage *= cm.criticalHitDamageMultiplier;
+            FindAnyObjectByType<AudioManager>().Play("Critical"); //TODO: Add critical sound
         }
         else FindAnyObjectByType<AudioManager>().Play("Attack");
         //Debug.Log($"Hit {zonesHit} zone(s)! Dealing {totalDamage} damage.");

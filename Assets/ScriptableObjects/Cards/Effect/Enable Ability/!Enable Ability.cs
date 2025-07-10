@@ -1,11 +1,33 @@
+using System;
 using UnityEngine;
+using Unity.VisualScripting;
 
+//Directly enables an ability 
+[CreateAssetMenu(menuName = "ScriptableObject/Card Effects/Enable Ability")]
 public class EnableAbility : CardEffect
 {
+    public enum AbilityToEnable { CRITICAL, BLEED };
+    public AbilityToEnable abe;
+    public override Effect effect => Effect.ENHANCE;
+
+    public override void Enhance()
+    {
+        CombatModifiers cm = FindFirstObjectByType<CombatModifiers>();
+        switch (abe)
+        {
+            case AbilityToEnable.CRITICAL:
+                cm.canPlayerCrit = true;
+                return;
+            case AbilityToEnable.BLEED:
+                cm.isBleedEnabled = true;
+                return;
+        }
+    }
+
+    #region Unused Voids
     public override void Apply(CharacterBody body)
     {
-        //Should be able to flip a boolean from combat modifiers
-        FindFirstObjectByType<CombatModifiers>();
-        //TODO: Will allow me to select a boolean from CombatModifiers and enable it
+        throw new NotImplementedException();
     }
+    #endregion
 }
